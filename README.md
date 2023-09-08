@@ -1,14 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Sep  8 14:28:16 2023
-
-@author: Akhilesh
-"""
-
-# Simple Docker Image README
-
-This README provides instructions on how to run a simple Docker image. This image is designed to demonstrate the basic concepts of Docker containerization and can be used as a starting point for more complex containerized applications.
-
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)

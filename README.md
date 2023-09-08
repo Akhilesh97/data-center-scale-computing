@@ -50,7 +50,8 @@ python pipeline_c.py https://data.austintexas.gov/api/views/9t4d-g238/rows.csv p
 
 This will run the pipeline code which :
 1. reads the csv from the link provided in the first argurment
-2. create an output file with the name processed.csv(provided in the second argument)
+2. performs standard transform operations on the specific columns of the dataset in the link above
+3. create an output file with the name processed.csv(provided in the second argument)
 
 ## Stopping and Cleaning Up
 

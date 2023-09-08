@@ -45,10 +45,12 @@ docker run -it --mount source=myvol_data1,target=/app pipeline:0.1
 This command will start a container and open a python bash where you can run the command. This command will also create a mount on the docker container with the name myvol_data1 and store the required output files 
 
 ```bash
-python pipeline_c.py
+python pipeline_c.py https://data.austintexas.gov/api/views/9t4d-g238/rows.csv processed.csv
 ```
 
-This will run the pipeline and create an output file processed.csv
+This will run the pipeline code which :
+    1. reads the csv from the link provided in the first argurment
+    2. create an output file with the name processed.csv(provided in the second argument)
 
 ## Stopping and Cleaning Up
 
@@ -74,8 +76,6 @@ You can customize this Docker image by modifying the source code in the reposito
 - **Changing the Application**: Replace the content in the `app` directory with your own application code.
 
 - **Modifying the Dockerfile**: If you have specific requirements or dependencies, you can modify the `Dockerfile`. For example, you can install additional software packages or set environment variables.
-
-- **Port Mapping**: Adjust the port mapping when running the container to match your application's requirements.
 
 ## Contributing
 

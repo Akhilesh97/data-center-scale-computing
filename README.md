@@ -20,8 +20,8 @@ Before you begin, ensure you have the following installed on your system:
    Clone this repository to your local machine or download and extract the ZIP file.
 
    ```bash
-   git clone https://github.com/yourusername/simple-docker-image.git
-   cd simple-docker-image
+   git clone https://github.com/Akhilesh97/data-center-scale-computing.git
+   cd data-center-scale-computing
    ```
 
 2. **Build the Docker Image**:

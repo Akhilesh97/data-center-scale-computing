@@ -42,11 +42,11 @@ Once you have built the Docker image, you can run it as a container.
 docker run -it --mount source=myvol_data1,target=/app pipeline:0.1
 ```
 
-This command will start a container and open a python bash where you can run the command. This command will also create a mount on the docker container with the name myvol_data1 and store the required output files 
-
-```bash
-python pipeline_c.py https://data.austintexas.gov/api/views/9t4d-g238/rows.csv processed.csv
-```
+This command will - 
+1. accepts 2 command line arguments, 
+2. reads a csv from the first argument
+3. does something to the data
+4. saves the results to the csv defined by the second argument
 
 This will run the pipeline code which :
 1. reads the csv from the link provided in the first argurment

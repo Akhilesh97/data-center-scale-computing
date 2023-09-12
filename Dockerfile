@@ -4,7 +4,6 @@ WORKDIR /app
 COPY pipeline.py pipeline_c.py
 RUN pip install pandas
 
-
-
-ENTRYPOINT  ["bash"]
+CMD ["python", "pipeline_c.py", "https://data.austintexas.gov/api/views/9t4d-g238/rows.csv", "processed.csv"]
+#ENTRYPOINT  ["bash"]
 

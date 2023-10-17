@@ -82,15 +82,13 @@ GROUP BY
 
 -- query 5
 SELECT
-    CAST(d."DateTime" AS DATE) AS Date,
-    o."Outcome_Type",
+    CAST(d."DateTime" AS DATE) AS Date,    
     SUM(COUNT(*)) OVER (ORDER BY CAST(d."DateTime" AS DATE)) AS Cumulative_Total
 FROM
     fact_table f
     JOIN dim_outcome_table o ON f."Outcome_Id" = o."Outcome_Id"
     JOIN dim_date d ON f."DateTime_Key" = d."DateTime_Key"
 GROUP BY
-    Date, o."Outcome_Type"
+    Date
 ORDER BY
-    Date, o."Outcome_Type";
-
+    Date

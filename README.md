@@ -58,7 +58,7 @@ To stop the running services, you can use the following command:
 
 ## The third normal form data model used to create the data warehouse
 
-![alt text](https://github.com/Akhilesh97/data-center-scale-computing/blob/HW2/docs/ER_diagram.png?raw=true)
+![alt text](https://github.com/Akhilesh97/data-center-scale-computing/blob/HW2/docs/3nf.drawio.png?raw=true)
 
 
 ## Customization

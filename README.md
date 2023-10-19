@@ -24,51 +24,42 @@ Before you begin, ensure you have the following installed on your system:
    cd data-center-scale-computing
    ```
 
-2. **Build the Docker Image**:
+2. **Build from the Docker compose file**:
 
    Build the Docker image using the provided `Dockerfile`.
 
    ```bash
-   docker build -t pipeline:0.1 .
+   docker compose up --build
    ```
-
-   Replace `pipeline:0.1` with your desired image name.
 
 ## Usage
 
-Once you have built the Docker image, you can run it as a container.
+Once you have built the Docker image, two services will fire up.
 
-```bash
-docker run -it --mount source=myvol_data1,target=/app pipeline:0.1
-```
-
-This command will - 
-1. accepts 2 command line arguments, 
-2. reads a csv from the first argument
-3. does something to the data
-4. saves the results to the csv defined by the second argument
-
-This will run the pipeline code which :
-1. reads the csv from the link provided in the first argurment
-2. performs standard transform operations on the specific columns of the dataset in the link above
-3. create an output file with the name processed.csv(provided in the second argument)
-
+1. The postgres db service
+   - This gets the postgres version 16 image
+   - sets the environment variables such as the db username, password and the database name
+   - creates a volume in the docker container to store the database
+   - executes an init.sql which creates the tables required for hosting the data warehouse
+2. The Extract, Transform and Load(ETL) service that
+   - build from the root directory
+   - extracts the raw csv file located on a remote link
+   - cleans the csv
+   - creates dataframes based on the data model
+   - inserts into the postgres db
+     
 ## Stopping and Cleaning Up
 
-To stop the running container, you can use the following command:
+To stop the running services, you can use the following command:
 
 ```bash
-docker stop <container_id>
+ docker compose down
 ```
 
-Replace `<container_id>` with the actual container ID or use the container name.
+## The third normal form data model used to create the data warehouse
 
-To remove the container and clean up resources (including the associated image), use:
+![alt text](https://github.com/Akhilesh97/data-center-scale-computing/blob/HW2/docs/3nf.drawio.png?raw=true)
 
-```bash
-docker rm <container_id>
-docker rmi simple-docker-image
-```
 
 ## Customization
 

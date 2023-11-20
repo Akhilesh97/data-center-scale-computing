@@ -60,7 +60,7 @@ Make sure you have Docker and Docker Compose installed on your machine.
 
 4. **Load Data:**
 
-    The "load" task retrieves the transformed data from the S3 bucket and writes it to the local Postgres instance.
+    The "load" task retrieves the transformed data from the S3 bucket and writes it to the local Postgres instance. There are inividual load tasks for loading data into 5 diemension tables and a fact table
 
 ## Usage
 

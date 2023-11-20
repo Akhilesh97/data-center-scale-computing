@@ -1,83 +1,61 @@
-## Table of Contents
+# Airflow ETL Pipeline
 
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Stopping and Cleaning Up](#stopping-and-cleaning-up)
-- [Customization](#customization)
-- [Contributing](#contributing)
-
-## Prerequisites
-
-Before you begin, ensure you have the following installed on your system:
-
-- Docker: You can download and install Docker from [Docker's official website](https://www.docker.com/get-started).
+This project sets up an Airflow ETL (Extract, Transform, Load) pipeline using Docker Compose. The pipeline fetches data from a given URL, processes it, and loads it into a local Postgres database.
 
 ## Getting Started
 
-1. **Clone or Download the Repository**:
+These instructions will help you set up and run the ETL pipeline on your local machine.
 
-   Clone this repository to your local machine or download and extract the ZIP file.
+### Prerequisites
 
-   ```bash
-   git clone https://github.com/Akhilesh97/data-center-scale-computing.git
-   cd data-center-scale-computing
-   ```
+Make sure you have Docker and Docker Compose installed on your machine.
 
-2. **Build the Docker Image**:
+### Installing
 
-   Build the Docker image using the provided `Dockerfile`.
+1. Clone this repository:
 
-   ```bash
-   docker build -t pipeline:0.1 .
-   ```
+    ```bash
+    git clone https://github.com/Akhilesh97/data-center-scale-computing.git
+    cd your-repo
+    ```
 
-   Replace `pipeline:0.1` with your desired image name.
+2. Build the Airflow image and start the Docker containers:
+
+    ```bash
+    docker-compose up
+    ```
+
+3. Access the Airflow web interface at [http://localhost:8080](http://localhost:8080) and configure the necessary connections.
+
+4. Run the Airflow DAG to initiate the ETL process.
+
+## ETL Process Overview
+
+1. **Build Airflow Image and PostgreSQL Service:**
+
+    The Docker Compose file sets up an Airflow instance and a PostgreSQL service. The necessary tables are created using the `init.sql` script.
+
+2. **Extract Data:**
+
+    The DAG's "extract" task fetches raw data from the URL [https://data.austintexas.gov/resource/9t4d-g238.json](https://data.austintexas.gov/resource/9t4d-g238.json) and writes it to a GCP S3 bucket based on the current timestamp.
+
+3. **Transform Data:**
+
+    The "transform" task reads the data from the S3 bucket, applies transformation logic to create dimension and fact tables, and writes them as Parquet files to a separate S3 bucket organized by the current date folder.
+
+4. **Load Data:**
+
+    The "load" task retrieves the transformed data from the S3 bucket and writes it to the local Postgres instance.
 
 ## Usage
 
-Once you have built the Docker image, you can run it as a container.
-
-```bash
-docker run -it --mount source=myvol_data1,target=/app pipeline:0.1
-```
-
-This command will - 
-1. accepts 2 command line arguments, 
-2. reads a csv from the first argument
-3. does something to the data
-4. saves the results to the csv defined by the second argument
-
-This will run the pipeline code which :
-1. reads the csv from the link provided in the first argurment
-2. performs standard transform operations on the specific columns of the dataset in the link above
-3. create an output file with the name processed.csv(provided in the second argument)
-
-## Stopping and Cleaning Up
-
-To stop the running container, you can use the following command:
-
-```bash
-docker stop <container_id>
-```
-
-Replace `<container_id>` with the actual container ID or use the container name.
-
-To remove the container and clean up resources (including the associated image), use:
-
-```bash
-docker rm <container_id>
-docker rmi simple-docker-image
-```
-
-## Customization
-
-You can customize this Docker image by modifying the source code in the repository. Here are some common customization options:
-
-- **Changing the Application**: Replace the content in the `app` directory with your own application code.
-
-- **Modifying the Dockerfile**: If you have specific requirements or dependencies, you can modify the `Dockerfile`. For example, you can install additional software packages or set environment variables.
+1. Access the Airflow web interface: [http://localhost:8080](http://localhost:8080)
+2. Trigger the DAG to start the ETL process.
 
 ## Contributing
 
-If you'd like to contribute to this project, feel free to open issues or submit pull requests on the GitHub repository. Contributions and improvements are always welcome.
+Feel free to contribute to this project by opening issues or creating pull requests.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

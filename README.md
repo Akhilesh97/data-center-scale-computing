@@ -62,6 +62,10 @@ Make sure you have Docker and Docker Compose installed on your machine.
 
     The "load" task retrieves the transformed data from the S3 bucket and writes it to the local Postgres instance. There are inividual load tasks for loading data into 5 diemension tables and a fact table
 
+## Directed Acyclcic Graph of the ETL pipeline
+
+![DAG-ETL](https://github.com/Akhilesh97/data-center-scale-computing/blob/HW3/docs/dag.png)
+
 ## Usage
 
 1. Access the Airflow web interface: [http://localhost:8080](http://localhost:8080)

@@ -15,7 +15,7 @@ Make sure you have Docker and Docker Compose installed on your machine.
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/Akhilesh97/data-center-scale-computing.git
+    git clone https://github.com/your-username/your-repo.git
     cd your-repo
     ```
 
@@ -27,7 +27,22 @@ Make sure you have Docker and Docker Compose installed on your machine.
 
 3. Access the Airflow web interface at [http://localhost:8080](http://localhost:8080) and configure the necessary connections.
 
-4. Run the Airflow DAG to initiate the ETL process.
+4. Create GCP Service Account and Obtain Credentials:
+
+    - Navigate to the Google Cloud Console: [Google Cloud Console](https://console.cloud.google.com/).
+    - Open the "IAM & Admin" section: In the left-hand navigation menu, click on "IAM & Admin" and then select "Service accounts."
+    - Select or create a service account:
+        - If you already have a service account that you want to use, find it in the list and click on its name.
+        - If you need to create a new service account, click on the "Create Service Account" button. Follow the prompts to give it a name, specify the role (permissions), and create the account.
+    - Generate a keyfile:
+        - Once you are viewing the details of the service account, click on the "Add Key" dropdown.
+        - Choose the JSON option to create a key in JSON format.
+        - This will download a JSON file containing the credentials for your service account.
+
+    - Set the environment variable:
+        - Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to point to the path of the downloaded JSON key file. This step is important for authenticating your applications with Google Cloud services.
+
+5. Run the Airflow DAG to initiate the ETL process.
 
 ## ETL Process Overview
 

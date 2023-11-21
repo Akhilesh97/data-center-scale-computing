@@ -15,7 +15,7 @@ Make sure you have Docker and Docker Compose installed on your machine.
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/your-username/your-repo.git
+    git clone https://github.com/Akhilesh97/data-center-scale-computing/tree/HW3.git
     cd your-repo
     ```
 
